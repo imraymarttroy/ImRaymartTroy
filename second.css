@@ -1,0 +1,429 @@
+/* ===== VARIABLES & BASE ===== */
+:root {
+  --bg: #1e1f22;
+  --text: #f2f3f5;
+  --muted: #b5bac1;
+  --accent: #5865f2;
+  --accent-dark: #404eed;
+  --icon-color: #a0a0a0;
+  --icon-hover: #ffffff;
+  --surface: rgba(255, 255, 255, 0.02);
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Work Sans', sans-serif;
+  line-height: 1.6;
+  padding-top: 60px;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+h2 {
+  font-size: 20px;
+  margin: 40px 0 12px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
+}
+
+p {
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+
+/* ===== SOCIAL ICONS ===== */
+.social-icons {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  display: flex;
+  gap: 15px;
+  z-index: 1000;
+}
+
+.social-icons a {
+  color: var(--accent);
+  font-size: 1.6rem;
+  text-shadow: 0 0 8px var(--accent);
+  transform: scale(1.2);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--icon-hover);
+}
+
+/* ===== Responsive Social Icons ===== */
+@media (max-width: 768px) {
+  .social-icons {
+    top: 10px;
+    right: 10px;
+    gap: 10px;
+    font-size: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .social-icons a {
+    font-size: 1.4rem;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .social-icons {
+    top: auto;
+    bottom: 10px;
+    right: 50%;
+    left: auto;
+    transform: translateX(50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 6px 10px;
+    border-radius: 12px;
+    gap: 12px;
+  }
+}
+
+/* ===== PROFILE HEADER ===== */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-wrapper-notes {
+  --size: 180px;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+}
+
+.profile-pic-notes {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #dbdbdb;
+}
+
+.status-badge {
+  position: absolute;
+  bottom: 5px;
+  right: 23px;
+  width: 22px;
+  height: 22px;
+  background: radial-gradient(circle at center, var(--accent) 0%, var(--accent-dark) 70%);
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0, 234, 255, 0.8), 0 0 12px rgba(0, 119, 255, 0.7);
+  animation: badgeGlow 2s ease-in-out infinite;
+}
+
+.note-bubble {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-family: 'Work Sans', sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.4);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 10px) scale(0.85);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.profile-wrapper-notes:hover .note-bubble,
+.profile-wrapper-notes:focus-visible .note-bubble {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+  animation: verseFloat 3s ease-in-out infinite 0.3s;
+}
+
+@keyframes badgeGlow {
+  50% {
+    box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent-dark);
+  }
+}
+
+@keyframes verseFloat {
+  50% {
+    transform: translate(-50%, -3px) scale(1);
+  }
+}
+
+/* ===== EDUCATION SECTION ===== */
+.edu-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-container {
+  position: relative;
+  display: inline-block;
+}
+
+.edu-logo {
+  width: 50px;
+  transition: transform 0.3s ease;
+}
+
+.grad-hat {
+  position: absolute;
+  top: -15px;
+  left: -8px;
+  width: 35px;
+  opacity: 0;
+  transform: scale(0) rotate(-10deg);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.logo-container:hover .edu-logo {
+  transform: scale(1.05);
+}
+
+.logo-container:hover .grad-hat {
+  opacity: 1;
+  transform: scale(1) rotate(-30deg);
+}
+
+/* ===== SKILLS SECTION ===== */
+.skills-section {
+  margin: 28px 0;
+}
+
+.skills-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.skills-column {
+  flex: 1 1 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.skill-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.skill-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-inner-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.skill-percent {
+  font-size: 0.9rem;
+  color: var(--text);
+  width: 35px;
+  text-align: right;
+}
+
+/* ===== SPOTLIGHT CURSOR EFFECT ===== */
+.spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    transparent 80px,
+    rgba(0, 0, 0, 0.4) 150px,
+    rgba(0, 0, 0, 0.9) 250px
+  );
+}
+
+.spotlight.inactive {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* ===== FADE-IN ANIMATION ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== DISCORD SERVER LIST ===== */
+.discord-server-list {
+  position: fixed;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #202225;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.server-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2f3136;
+  cursor: pointer;
+  transition: border-radius 0.3s ease, background-color 0.3s ease;
+  border: 3px solid transparent;
+  overflow: hidden;
+}
+
+.server-icon img {
+  width: 24px;
+  height: auto;
+  filter: grayscale(100%) brightness(75%);
+  transition: filter 0.3s ease;
+}
+
+.server-icon:hover {
+  border-radius: 20%;
+  background-color: #5865f2;
+}
+
+.server-icon:hover img {
+  filter: none;
+}
+
+/* ===== DISCORD TOAST ===== */
+.discord-toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--surface);
+  color: var(--text);
+  padding: 12px 18px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  border-left: 4px solid var(--accent);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.discord-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.discord-toast.hidden {
+  display: none;
+}
+
+.discord-toast i {
+  color: var(--accent);
+  font-size: 16px;
+}
+
+#toast-close {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 6px;
+  transition: color 0.3s ease;
+}
+
+#toast-close:hover,
+#toast-close:focus {
+  color: var(--accent);
+  outline: none;
+}
+
+.discord-toast:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 500px) {
+  .discord-toast {
+    right: 15px;
+    left: 15px;
+    bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  #toast-close {
+    font-size: 16px;
+  }
+}
